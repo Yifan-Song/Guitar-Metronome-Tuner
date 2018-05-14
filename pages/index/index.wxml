@@ -1,0 +1,25 @@
+<!--index.wxml-->
+<view class="container">
+
+  <view class="functionHead">
+      <button class="metronomeButton">节拍器</button>
+      <button class="tunerButton">调音器</button>
+  </view>
+
+  <view class="metronomeHead">
+      <text class="metronomeHeader">{{metronomeHeader}}</text>
+  </view>
+
+  <view class="metronomeSpeedBody">
+      <icon class="iconfont icon-jian-copy" bindtap="minusBeatSpeedNum" bindlongpress='longMinusBeatSpeedNum'/>
+      <text class="beatspeed-num">{{beatSpeedNum}}</text>
+      <icon class="iconfont icon-jia" bindtap="addBeatSpeedNum" bindlongpress='longAddBeatSpeedNum'/>
+  </view>
+  <view class="metronomePlayBody">
+      <icon class="iconfont icon-bofang" bindtap="addBeatSpeedNum" />
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+
+</view>

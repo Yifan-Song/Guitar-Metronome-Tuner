@@ -1,0 +1,12 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#FDF5E6",
+    "navigationBarTitleText": "吉他调音节拍器",
+    "navigationBarTextStyle":"black"
+  }
+}
