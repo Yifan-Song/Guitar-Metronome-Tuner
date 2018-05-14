@@ -32,6 +32,15 @@ Page({
     var newNum = this.data.beatSpeedNum + 10;
     this.setData({ beatSpeedNum: newNum })
   },  
+  playBeat: function (){
+    console.log("宋逸凡是世界上最帅的人")
+  },
+  navigateToMetronome: function () {
+    console.log("宋逸凡是世界上最帅的人")
+  },
+  navigateToTuner: function () {
+    console.log("宋逸凡是世界上最帅的人")
+  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({

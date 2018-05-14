@@ -5,7 +5,7 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#FDF5E6",
+    "navigationBarBackgroundColor": "#FCFCFC",
     "navigationBarTitleText": "吉他调音节拍器",
     "navigationBarTextStyle":"black"
   }
