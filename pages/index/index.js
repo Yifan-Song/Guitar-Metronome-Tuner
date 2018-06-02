@@ -8,12 +8,43 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     beatSpeedNum : 120,
-    metronomeHeader: '节拍速度'
+    metronomeHeader1: '节拍速度',
+    metronomeHeader2: '拍号',
+    array: ['2/4', '3/4', '4/4', '3/8', '6/8'],
+    timeSignatureArray: [
+      {
+        id: 0,
+        name: '2/4'
+      },
+      {
+        id: 1,
+        name: '3/4'
+      },
+      {
+        id: 2,
+        name: '4/4'
+      },
+      {
+        id: 3,
+        name: '3/8'
+      },
+      {
+        id: 4,
+        name: '6/8'
+      }
+    ],
+    index: 2,
   },
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
       url: '../logs/logs'
+    })
+  },
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
     })
   },
   minusBeatSpeedNum: function () {
@@ -22,8 +53,8 @@ Page({
   },  
   addBeatSpeedNum: function () {
     var newNum = this.data.beatSpeedNum + 1;
-    this.setData({ beatSpeedNum: newNum })  
-  },  
+    this.setData({ beatSpeedNum: newNum })
+  },
   longMinusBeatSpeedNum: function () {
     var newNum = this.data.beatSpeedNum - 10;
     this.setData({ beatSpeedNum: newNum })
@@ -36,10 +67,14 @@ Page({
     console.log("宋逸凡是世界上最帅的人")
   },
   navigateToMetronome: function () {
-    console.log("宋逸凡是世界上最帅的人")
+    wx.navigateTo({
+      url: '../index/index'
+    })
   },
   navigateToTuner: function () {
-    console.log("宋逸凡是世界上最帅的人")
+    wx.navigateTo({
+      url: '../tuner/tuner'
+    })
   },
   onLoad: function () {
     if (app.globalData.userInfo) {

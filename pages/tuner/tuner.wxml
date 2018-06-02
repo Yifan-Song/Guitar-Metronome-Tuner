@@ -1,0 +1,30 @@
+<!--tuner.wxml-->
+<view class="container">
+
+  <view class="functionHead">
+      <button class="metronomeButton" bindtap="navigateToMetronome">节拍器</button>
+      <button class="tunerButton" bindtap="navigateToTuner">调音器</button>
+  </view>
+
+  <view class="tunerHead">
+      <text class="tunerHeader">游标图待实现</text>
+  </view>
+
+  <view class="tunerCalibratedRange">
+      <text>{{tunerHeader1}}{{standardFrequency}}{{unit}}\n</text>
+      <text>{{tunerHeader2}}{{currentFrequency}}{{unit}}</text>
+  </view>
+  
+  <view class="tunerStrings">
+      <text>\n\n</text>
+      <button class="string4button" bindtap="tuneString4">4</button>
+      <button class="string3button" bindtap="tuneString3">3</button>
+      <text>\n\n</text>
+      <button class="string5button" bindtap="tuneString5">5</button>
+      <button class="string2button" bindtap="tuneString2">2</button>
+      <text>\n\n</text>
+      <button class="string6button" bindtap="tuneString6">6</button>
+      <button class="string1button" bindtap="tuneString1">1</button>
+  </view>
+
+</view>

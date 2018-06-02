@@ -1,13 +1,20 @@
 <!--index.wxml-->
 <view class="container">
-
   <view class="functionHead">
       <button class="metronomeButton" bindtap="navigateToMetronome">节拍器</button>
       <button class="tunerButton" bindtap="navigateToTuner">调音器</button>
   </view>
 
   <view class="metronomeHead">
-      <text class="metronomeHeader">{{metronomeHeader}}</text>
+    <view class="section">
+      <view class="metronomeHeader2">{{metronomeHeader2}}</view>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          {{array[index]}}
+        </view>
+      </picker>
+      </view>
+      <text class="metronomeHeader1">{{metronomeHeader1}}</text>
   </view>
 
   <view class="metronomeSpeedBody">
