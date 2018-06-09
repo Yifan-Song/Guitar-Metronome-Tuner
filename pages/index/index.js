@@ -7,7 +7,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    beatSpeedNum : 120,
+    beatSpeedNum: 120,
     metronomeHeader1: '节拍速度',
     metronomeHeader2: '拍号',
     array: ['2/4', '3/4', '4/4', '3/8', '6/8'],
@@ -36,10 +36,10 @@ Page({
     index: 2,
     beatSrc: 'http://s.aigei.com/pvaud_mp3/aud/mp3/67/677c96664b054db6ae2609f56e84e99b.mp3?download/19000%E9%9F%B3%E6%95%88%E5%BA%93-%E8%8F%9C%E5%8D%95%E4%B8%AD%E5%8D%95%E5%87%BB06+-+%E8%8F%9C%E5%8D%95-+%E5%8D%95%E5%87%BB%28Menu_%E7%88%B1%E7%BB%99%E7%BD%91_aigei_com.mp3&e=1528569540&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:BvI3fbk1RJXQfElSYNCtRgghQ98=',
     isPlay: false,
-    setInter:'',
+    setInter: ''
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
@@ -53,12 +53,12 @@ Page({
   minusBeatSpeedNum: function () {
     clearInterval(this.data.setInter)
     var newNum = this.data.beatSpeedNum - 1;
-    this.setData({ 
+    this.setData({
       beatSpeedNum: newNum,
-      action:{
+      action: {
         method: 'setPlaybackRate',
         data: newNum / 120
-      } 
+      }
     })
     if (this.data.isPlay) {
       this.data.setInter = setInterval(this.beatRepeat, 1000 * 60 / this.data.beatSpeedNum)
@@ -74,7 +74,7 @@ Page({
         data: newNum / 120
       }
     })
-    if(this.data.isPlay){
+    if (this.data.isPlay) {
       this.data.setInter = setInterval(this.beatRepeat, 1000 * 60 / this.data.beatSpeedNum)
     }
   },
@@ -107,51 +107,43 @@ Page({
     }
   },
   playClick: function () {
-    if(!this.data.isPlay){
-      tempRecord = true;
+    if (!this.data.isPlay) {
       this.setData({
-        isPlay:true,
+        isPlay: true,
       });
-      if(tempRecord){
-          console.log("yes!")
-      }
-      this.data.setInter = setInterval(this.beatRepeat, 1000 * 60/this.data.beatSpeedNum)
+      this.data.setInter = setInterval(this.beatRepeat, 1000 * 60 / this.data.beatSpeedNum)
       console.log("play")
-      
+
     }
-    else{
+    else {
       this.setData({
-        isPlay:false,
+        isPlay: false,
         action: {
           method: 'pause'
         }
       });
-      tempRecord = false;
       clearInterval(this.data.setInter)
       console.log("pause")
     }
   },
-  beatRepeat(){
+  beatRepeat() {
     this.audioCtx.play()
     this.audioCtx.seek(0)
   },
   navigateToMetronome: function () {
-    wx.navigateTo({
-      url: '../index/index'
-    })
+    console.log("宋逸凡是世界上最睿智的人")
   },
   navigateToTuner: function () {
-    wx.navigateTo({
-      url: '../tuner/tuner'
-    })
+    console.log("宋逸凡是世界上最睿智的人")
   },
-  onLoad: function () {
+  onLoad: function (e) {
+    this.audioCtx = wx.createAudioContext('beat')
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
+    } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -173,7 +165,7 @@ Page({
       })
     }
   },
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
