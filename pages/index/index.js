@@ -34,6 +34,9 @@ Page({
       }
     ],
     index: 2,
+    beatSrc: 'http://s.aigei.com/pvaud_mp3/aud/mp3/67/677c96664b054db6ae2609f56e84e99b.mp3?download/19000%E9%9F%B3%E6%95%88%E5%BA%93-%E8%8F%9C%E5%8D%95%E4%B8%AD%E5%8D%95%E5%87%BB06+-+%E8%8F%9C%E5%8D%95-+%E5%8D%95%E5%87%BB%28Menu_%E7%88%B1%E7%BB%99%E7%BD%91_aigei_com.mp3&e=1528569540&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:BvI3fbk1RJXQfElSYNCtRgghQ98=',
+    isPlay: false,
+    setInter:'',
   },
   //事件处理函数
   bindViewTap: function() {
@@ -48,23 +51,89 @@ Page({
     })
   },
   minusBeatSpeedNum: function () {
-      var newNum = this.data.beatSpeedNum - 1;
-      this.setData({beatSpeedNum : newNum})
-  },  
+    clearInterval(this.data.setInter)
+    var newNum = this.data.beatSpeedNum - 1;
+    this.setData({ 
+      beatSpeedNum: newNum,
+      action:{
+        method: 'setPlaybackRate',
+        data: newNum / 120
+      } 
+    })
+    if (this.data.isPlay) {
+      this.data.setInter = setInterval(this.beatRepeat, 1000 * 60 / this.data.beatSpeedNum)
+    }
+  },
   addBeatSpeedNum: function () {
+    clearInterval(this.data.setInter)
     var newNum = this.data.beatSpeedNum + 1;
-    this.setData({ beatSpeedNum: newNum })
+    this.setData({
+      beatSpeedNum: newNum,
+      action: {
+        method: 'setPlaybackRate',
+        data: newNum / 120
+      }
+    })
+    if(this.data.isPlay){
+      this.data.setInter = setInterval(this.beatRepeat, 1000 * 60 / this.data.beatSpeedNum)
+    }
   },
   longMinusBeatSpeedNum: function () {
+    clearInterval(this.data.setInter)
     var newNum = this.data.beatSpeedNum - 10;
-    this.setData({ beatSpeedNum: newNum })
+    this.setData({
+      beatSpeedNum: newNum,
+      action: {
+        method: 'setPlaybackRate',
+        data: newNum / 120
+      }
+    })
+    if (this.data.isPlay) {
+      this.data.setInter = setInterval(this.beatRepeat, 1000 * 60 / this.data.beatSpeedNum)
+    }
   },
   longAddBeatSpeedNum: function () {
+    clearInterval(this.data.setInter)
     var newNum = this.data.beatSpeedNum + 10;
-    this.setData({ beatSpeedNum: newNum })
-  },  
-  playBeat: function (){
-    console.log("宋逸凡是世界上最帅的人")
+    this.setData({
+      beatSpeedNum: newNum,
+      action: {
+        method: 'setPlaybackRate',
+        data: newNum / 120
+      }
+    })
+    if (this.data.isPlay) {
+      this.data.setInter = setInterval(this.beatRepeat, 1000 * 60 / this.data.beatSpeedNum)
+    }
+  },
+  playClick: function () {
+    if(!this.data.isPlay){
+      tempRecord = true;
+      this.setData({
+        isPlay:true,
+      });
+      if(tempRecord){
+          console.log("yes!")
+      }
+      this.data.setInter = setInterval(this.beatRepeat, 1000 * 60/this.data.beatSpeedNum)
+      console.log("play")
+      
+    }
+    else{
+      this.setData({
+        isPlay:false,
+        action: {
+          method: 'pause'
+        }
+      });
+      tempRecord = false;
+      clearInterval(this.data.setInter)
+      console.log("pause")
+    }
+  },
+  beatRepeat(){
+    this.audioCtx.play()
+    this.audioCtx.seek(0)
   },
   navigateToMetronome: function () {
     wx.navigateTo({

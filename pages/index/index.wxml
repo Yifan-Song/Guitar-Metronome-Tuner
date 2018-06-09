@@ -24,7 +24,9 @@
   </view>
   
   <view class="metronomePlayBody">
-      <icon class="iconfont icon-bofang" bindtap="playBeat" />
+      <icon class="iconfont icon-bofang" bindtap="playClick" />
   </view>
+
+  <audio id="beat" src="{{beatSrc}}"  style="visibility: hidden;" action="{{action}}" ></audio>
 
 </view>
