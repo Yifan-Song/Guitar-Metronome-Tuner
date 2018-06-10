@@ -46,9 +46,20 @@ Page({
   },
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
+    clearInterval(this.data.setInter)
     this.setData({
       index: e.detail.value
     })
+    if (this.data.isPlay) {
+      var timeInterval;
+      if (this.data.index < 3) {
+        timeInterval = 1000 * 60 / this.data.beatSpeedNum
+      }
+      else {
+        timeInterval = 500 * 60 / this.data.beatSpeedNum
+      }
+      this.data.setInter = setInterval(this.beatRepeat, timeInterval)
+    }
   },
   minusBeatSpeedNum: function () {
     clearInterval(this.data.setInter)
@@ -61,7 +72,14 @@ Page({
       }
     })
     if (this.data.isPlay) {
-      this.data.setInter = setInterval(this.beatRepeat, 1000 * 60 / this.data.beatSpeedNum)
+      var timeInterval;
+      if (this.data.index < 3) {
+        timeInterval = 1000 * 60 / this.data.beatSpeedNum
+      }
+      else {
+        timeInterval = 500 * 60 / this.data.beatSpeedNum
+      }
+      this.data.setInter = setInterval(this.beatRepeat, timeInterval)
     }
   },
   addBeatSpeedNum: function () {
@@ -75,7 +93,14 @@ Page({
       }
     })
     if (this.data.isPlay) {
-      this.data.setInter = setInterval(this.beatRepeat, 1000 * 60 / this.data.beatSpeedNum)
+      var timeInterval;
+      if (this.data.index < 3) {
+        timeInterval = 1000 * 60 / this.data.beatSpeedNum
+      }
+      else {
+        timeInterval = 500 * 60 / this.data.beatSpeedNum
+      }
+      this.data.setInter = setInterval(this.beatRepeat, timeInterval)
     }
   },
   longMinusBeatSpeedNum: function () {
@@ -89,7 +114,14 @@ Page({
       }
     })
     if (this.data.isPlay) {
-      this.data.setInter = setInterval(this.beatRepeat, 1000 * 60 / this.data.beatSpeedNum)
+      var timeInterval;
+      if (this.data.index < 3) {
+        timeInterval = 1000 * 60 / this.data.beatSpeedNum
+      }
+      else {
+        timeInterval = 500 * 60 / this.data.beatSpeedNum
+      }
+      this.data.setInter = setInterval(this.beatRepeat, timeInterval)
     }
   },
   longAddBeatSpeedNum: function () {
@@ -103,7 +135,14 @@ Page({
       }
     })
     if (this.data.isPlay) {
-      this.data.setInter = setInterval(this.beatRepeat, 1000 * 60 / this.data.beatSpeedNum)
+      var timeInterval;
+      if (this.data.index < 3) {
+        timeInterval = 1000 * 60 / this.data.beatSpeedNum
+      }
+      else {
+        timeInterval = 500 * 60 / this.data.beatSpeedNum
+      }
+      this.data.setInter = setInterval(this.beatRepeat, timeInterval)
     }
   },
   playClick: function () {
@@ -111,8 +150,16 @@ Page({
       this.setData({
         isPlay: true,
       });
-      this.data.setInter = setInterval(this.beatRepeat, 1000 * 60 / this.data.beatSpeedNum)
+      var timeInterval;
+      if(this.data.index < 3){
+        timeInterval = 1000 * 60 / this.data.beatSpeedNum
+      }
+      else{
+        timeInterval = 500 * 60 / this.data.beatSpeedNum
+      }
+      this.data.setInter = setInterval(this.beatRepeat, timeInterval)
       console.log("play")
+
     }
     else {
       this.setData({
@@ -130,14 +177,10 @@ Page({
     this.audioCtx.seek(0)
   },
   navigateToMetronome: function () {
-      wx.navigateTo({
-      url: '../index/index'
-      })
+    console.log("宋逸凡是世界上最睿智的人")
   },
   navigateToTuner: function () {
-      wx.navigateTo({
-      url: '../tuner/tuner'
-      })
+    console.log("宋逸凡是世界上最睿智的人")
   },
   onLoad: function (e) {
     this.audioCtx = wx.createAudioContext('beat')
