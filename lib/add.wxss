@@ -15,5 +15,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-jia:before { content: "\e74a"; }
+.icon-jia:before { 
+    font-size: 50px;
+  content: "\e74a"; 
+  }
 

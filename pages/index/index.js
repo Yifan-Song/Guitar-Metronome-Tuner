@@ -113,7 +113,6 @@ Page({
       });
       this.data.setInter = setInterval(this.beatRepeat, 1000 * 60 / this.data.beatSpeedNum)
       console.log("play")
-
     }
     else {
       this.setData({
@@ -131,10 +130,14 @@ Page({
     this.audioCtx.seek(0)
   },
   navigateToMetronome: function () {
-    console.log("宋逸凡是世界上最睿智的人")
+      wx.navigateTo({
+      url: '../index/index'
+      })
   },
   navigateToTuner: function () {
-    console.log("宋逸凡是世界上最睿智的人")
+      wx.navigateTo({
+      url: '../tuner/tuner'
+      })
   },
   onLoad: function (e) {
     this.audioCtx = wx.createAudioContext('beat')

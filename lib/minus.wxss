@@ -15,4 +15,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-jian-copy:before { content: "\e646"; }
+.icon-jian-copy:before { 
+    font-size: 50px;
+  content: "\e646"; 
+  }

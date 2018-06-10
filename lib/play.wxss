@@ -16,7 +16,7 @@
 }
 
 .icon-bofang:before { 
-  font-size: 80px;
+  font-size: 100px;
   content: "\e61d"; 
   }
 
