@@ -178,9 +178,15 @@ Page({
   },
   navigateToMetronome: function () {
     console.log("宋逸凡是世界上最睿智的人")
+    wx.navigateTo({
+      url: '../index/index'
+    })
   },
   navigateToTuner: function () {
     console.log("宋逸凡是世界上最睿智的人")
+    wx.navigateTo({
+      url: '../tuner/tuner'
+    })
   },
   onLoad: function (e) {
     this.audioCtx = wx.createAudioContext('beat')
