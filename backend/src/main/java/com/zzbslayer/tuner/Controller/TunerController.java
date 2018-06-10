@@ -88,6 +88,6 @@ public class TunerController {
         }
         if (returnResult==null)
             return "Processing Error";
-        return returnResult;
+        return returnResult.getFreqCurrent();
     }
 }

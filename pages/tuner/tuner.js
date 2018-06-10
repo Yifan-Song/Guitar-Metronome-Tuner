@@ -66,7 +66,7 @@ Page({
     })
   },
   onLoad: function () {
-
+    var that = this;
     this.tuneString1();
     this.recorderManager = wx.getRecorderManager();
     this.recorderManager.onStart(() => {
@@ -87,17 +87,21 @@ Page({
           'tune': currentString
         },
         success: function (res) {
-          console.log(res)
-          var data = res.data
+          console.log("currentFreq: "+res.data)
+          that.setData({
+            currentFrequency: res.data
+          })
         }
       })
     });
+    
     this.recorderManager.start({
       duration : 2000
     });
       setTimeout(function() {
         console.log("2s passed");
       }, 2000);
+    
   },
   getUserInfo: function (e) {
     console.log(e)
