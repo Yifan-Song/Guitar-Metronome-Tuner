@@ -78,7 +78,7 @@ Page({
       });
     this.recorderManager.onStop((res) => {
       console.log('recorder stop', res)
-      const {tempFilePath}= res
+      var tempFilePath = res.tempFilePath
       wx.uploadFile({
         url: 'http://localhost:8080/uploadModel',
         filePath: tempFilePath,
