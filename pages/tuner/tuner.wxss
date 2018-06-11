@@ -3,10 +3,16 @@
 @import '../../lib/minus.wxss';
 @import '../../lib/play.wxss';
 
-page {  
-  display: block;  
-  min-height: 100%;  
-}  
+page { 
+overflow:hidden; 
+position:fixed; 
+background-image:url('http://www.magic-guitars.com/attachments/2015/0710/20150710050854307.jpg'); 
+margin: 0px; 
+background-repeat: no-repeat;
+  background-attachment:fixed;
+  background-position:bottom;
+background-size: 100% 50%; 
+}
 
 .userinfo {
   display: flex;
@@ -44,32 +50,32 @@ page {
 }
 
 .string4button{
-  margin-right: 50px;
+  margin-right: 90px;
   display: inline;
 }
 
 .string3button{
-  margin-left: 50px;
+  margin-left: 90px;
   display: inline;
 }
 
 .string5button{
-  margin-right: 50px;
+  margin-right: 90px;
   display: inline;
 }
 
 .string2button{
-  margin-left: 50px;
+  margin-left: 90px;
   display: inline;
 }
 
 .string6button{
-  margin-right: 50px;
+  margin-right: 90px;
   display: inline;
 }
 
 .string1button{
-  margin-left: 50px;
+  margin-left: 90px;
   display: inline;
 }
 

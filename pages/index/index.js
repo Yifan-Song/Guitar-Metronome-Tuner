@@ -7,7 +7,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    beatSpeedNum: 120,
+    beatSpeedNum: 60,
     metronomeHeader1: '节拍速度',
     metronomeHeader2: '拍号',
     array: ['2/4', '3/4', '4/4', '3/8', '6/8'],
@@ -82,6 +82,7 @@ Page({
       this.data.setInter = setInterval(this.beatRepeat, timeInterval)
     }
   },
+
   addBeatSpeedNum: function () {
     clearInterval(this.data.setInter)
     var newNum = this.data.beatSpeedNum + 1;
@@ -177,10 +178,16 @@ Page({
     this.audioCtx.seek(0)
   },
   navigateToMetronome: function () {
-    console.log("宋逸凡是世界上最睿智的人")
+    clearInterval(this.data.setInter)
+     wx.navigateTo({
+     url: '../index/index'
+     })
   },
   navigateToTuner: function () {
-    console.log("宋逸凡是世界上最睿智的人")
+    clearInterval(this.data.setInter)
+     wx.navigateTo({
+     url: '../tuner/tuner'
+     })   
   },
   onLoad: function (e) {
     this.audioCtx = wx.createAudioContext('beat')

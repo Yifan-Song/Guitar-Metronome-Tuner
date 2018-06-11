@@ -3,6 +3,7 @@
 const app = getApp()
 var currentString; 
 var timer; // 计时器
+var interval;
 Page({
   data: {
     motto: 'Text',
@@ -21,6 +22,7 @@ Page({
     E1Frequency: 329.6276,
     unit: 'Hz',
     tempFilePath: "DefaultFilePath",
+    result: "频率过低，请把弦拧紧"
   },
   //事件处理函数
   bindViewTap: function () {
@@ -56,17 +58,19 @@ Page({
     console.log("宋逸凡是世界上最帅的人")
   },
   navigateToMetronome: function () {
+    clearInterval(interval)
     wx.navigateTo({
       url: '../index/index'
     })
   },
   navigateToTuner: function () {
+    clearInterval(interval)
     wx.navigateTo({
       url: '../tuner/tuner'
     })
   },
   onLoad: function () {
-
+    var that = this;
     this.tuneString1();
     this.recorderManager = wx.getRecorderManager();
     this.recorderManager.onStart(() => {
@@ -78,7 +82,7 @@ Page({
       });
     this.recorderManager.onStop((res) => {
       console.log('recorder stop', res)
-      const {tempFilePath}= res
+      var tempFilePath = res.tempFilePath
       wx.uploadFile({
         url: 'http://localhost:8080/uploadModel',
         filePath: tempFilePath,
@@ -87,17 +91,41 @@ Page({
           'tune': currentString
         },
         success: function (res) {
-          console.log(res)
-          var data = res.data
+          console.log("currentFreq: " + res.data)
+          that.setData({
+            currentFrequency: res.data
+          })
+          if ((that.currentFrequency - that.standardFrequency) < 1 && (that.currentFrequency - that.standardFrequency) > -1)
+          {
+            that.setData({
+              result: "频率正常"
+            })
+          }
+          else{
+          if (that.currentFrequency < that.standardFrequency)
+          {
+            that.setData({
+              result: "频率过低，请把弦拧紧"
+            })
+          }
+          if (that.currentFrequency < that.standardFrequency) {
+            that.setData({
+              result: "频率过低，请把弦拧紧"
+            })
+          }
+          }
         }
       })
     });
-    this.recorderManager.start({
-      duration : 2000
-    });
-      setTimeout(function() {
+    interval = setInterval(function () {
+      that.recorderManager.start({
+        duration: 2000,
+        format: 'mp3'
+      });
+      setTimeout(function () {
         console.log("2s passed");
       }, 2000);
+    }, 2000) //循环时间 这里是2秒
   },
   getUserInfo: function (e) {
     console.log(e)
